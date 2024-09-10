@@ -1,3 +1,5 @@
+require_reletive 'visitor'
+
 class Parser
   def initialize() {
 

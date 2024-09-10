@@ -7,12 +7,8 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def serialize
-      //output as string
-    end
-
-    def evaluate 
-      //evalutae and return intersecct of two sets or issue a type error
+    def traverse(visitor)
+      visitor.visitSetPrimitive(self)
     end
   end
 
