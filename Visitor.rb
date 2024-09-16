@@ -1,13 +1,6 @@
 
-class Visitor 
-  def visit(node) 
-    case node.class
-    when IntPrim
-
-    when FloatPrim
-
-    when BoolPrim
-
-    when 
+module Visitor
+  def visit
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
 end

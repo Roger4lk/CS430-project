@@ -59,40 +59,388 @@ module AbstractSyntaxTree
     end
   end
 
-  class addition
-    def initialize(addand1, addand2)
-      @addand1 = addand1
-      @addand2 = addand2
+  class Add
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
     end
 
-    def traverse(visitor) {
+    def traverse(visitor) 
       visitor.visit(self);
-    }
-
-
+    end
   end
 
-  class subtraction
-    
+  class Subtract
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
   end
   
-  class multiplication
-    
+  class Multiply
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
   end
   
-  class division
-    
+  class Divide
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
   end 
   
-  class modulo
-    
-  end
-  
-  class exponentiation
-    
-  end
-  
-  class negation
+  class Modulo
+    attr_reader :left, :right
 
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+  
+  class Exponentiate
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+  
+  class Negate
+    attr_reader :value
+
+    def initialize(value)
+      @value = value
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class AndLog
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class OrLog
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class NotLog
+    attr_reader :value
+
+    def initialize(left)
+      @value = value
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class LValue 
+    attr_reader :row, :collumn
+
+    def initialize(row, collumn) 
+      @row = row
+      @collumn = collumn
+    end
+
+    def travers(visitor)
+      visitor.visit(self)
+    end
+  end
+
+  class RValue 
+    attr_reader :row, :collumn
+
+    def initialize(row, collumn) 
+      @row = row
+      @collumn = collumn
+    end
+
+    def travers(visitor)
+      visitor.visit(self)
+    end
+  end
+
+  class AndBitw
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class OrBitw
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class XorBitw
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class LshiftBitw
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class RshiftBitw
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class NotBitw
+    attr_reader :value
+
+    def initialize(value)
+      @value = value
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class Equal
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class NotEqual
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class LessThan
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class LessEqual
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class GreaterThan
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class GreaterEqual 
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class FloatToInt
+    attr_reader :value
+
+    def initialize(value)
+      @value = value
+    end
+
+    def traverse(visitor)
+      visitor.visit(self)
+    end
+  end  
+
+  class IntToFloat
+    attr_reader :value
+
+    def initialize(value)
+      @value = value
+    end
+
+    def traverse(visitor)
+      visitor.visit(self)
+    end
+  end  
+
+  class Max
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class Min
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class Mean
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
+  end
+
+  class Sum
+    attr_reader :left, :right
+
+    def initialize(left, right)
+      @left = left
+      @right = right
+    end
+
+    def traverse(visitor) 
+      visitor.visit(self);
+    end
   end
 end
