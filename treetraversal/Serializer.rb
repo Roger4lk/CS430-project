@@ -1,5 +1,5 @@
-require_relative 'Visitor'
-require_relative 'AbstractSyntaxTree'
+require_relative 'treetraversal/Visitor'
+require_relative 'treetraversal/AbstractSyntaxTree'
 
 class Serializer include Visitor
   def visit(node)
