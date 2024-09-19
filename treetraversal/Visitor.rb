@@ -1,6 +1,39 @@
-
+require_relative 'AbstractSyntaxTree'
 module Visitor
-  def visit
+  P_INT = "#{AbstractSyntaxTree::IntPrim}"
+  P_FLT = "#{AbstractSyntaxTree::FloatPrim}"
+  P_BOOL = "#{AbstractSyntaxTree::BoolPrim}"
+  P_STRING = "#{AbstractSyntaxTree::StringPrim}"
+  P_CELL_ADDR = "#{AbstractSyntaxTree::CellAddr}"
+  A_ADD = "#{AbstractSyntaxTree::Add}"
+  A_SUB = "#{AbstractSyntaxTree::Subtract}"
+  A_MULT = "#{AbstractSyntaxTree::Multiply}"
+  A_DIVIDE = "#{AbstractSyntaxTree::Divide}"
+  A_MOD = "#{AbstractSyntaxTree::Modulo}"
+  L_AND = "#{AbstractSyntaxTree::AndLog}"
+  L_OR = "#{AbstractSyntaxTree::OrLog}"
+  L_NOT = "#{AbstractSyntaxTree::NotLog}"
+  LVAL = "#{AbstractSyntaxTree::LValue}"
+  RVAL = "#{AbstractSyntaxTree::RValue}"
+  B_AND = "#{AbstractSyntaxTree::AndBitw}"
+  B_OR = "#{AbstractSyntaxTree::OrBitw}"
+  B_RSHIFT = "#{AbstractSyntaxTree::RshiftBitw}"
+  B_LSHIFT = "#{AbstractSyntaxTree::LshiftBitw}"
+  B_NOT = "#{AbstractSyntaxTree::NotBitw}"
+  R_EQ = "#{AbstractSyntaxTree::Equal}"
+  R_NOT_EQ = "#{AbstractSyntaxTree::NotEqual}"
+  R_LESS = "#{AbstractSyntaxTree::LessThan}"
+  R_LESS_EQ = "#{AbstractSyntaxTree::LessEqual}"
+  R_GREATER = "#{AbstractSyntaxTree::GreaterThan}"
+  R_GREATER_EQ = "#{AbstractSyntaxTree::GreaterEqual}"
+  C_FLT_TO_INT = "#{AbstractSyntaxTree::FloatToInt}"
+  C_INT_TO_FLT = "#{AbstractSyntaxTree::IntToFloat}"
+  S_MAX = "#{AbstractSyntaxTree::Max}"
+  S_MIN = "#{AbstractSyntaxTree::Min}"
+  S_MEAN = "#{AbstractSyntaxTree::Mean}"
+  S_SUM = "#{AbstractSyntaxTree::Sum}"
+
+  def visit(node, payload = nil)
     raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
 end

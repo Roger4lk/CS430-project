@@ -131,19 +131,55 @@ class Evaluator include Visitor
         raise IllegalArgumentError, "Expexted: (IntPrim, IntPrim) \n Actual: (#{left.class}, #{right.class})"
       end
     when R_EQ
-      return "(#{self.visit(node.left)} == #{self.visit(node.right)})"
+      left = self.visit(node.left)
+      right = self.visit(node.right)
+      if right.value == left.value
+        return BoolPrim.new(True)
+      else 
+        return BoolPrim.new(False)
+      end
     when R_NOT_EQ
-      return "(#{self.visit(node.left)} != #{self.visit(node.right)})"
+      left = self.visit(node.left)
+      right = self.visit(node.right)
+      if right.value == left.value
+        return BoolPrim.new(False)
+      else 
+        return BoolPrim.new(True)
+      end
     when R_LESS
-      return "(#{self.visit(node.left)} < #{self.visit(node.right)})"
+      left = self.visit(node.left)
+      right = self.visit(node.right)
+      if right.value < left.value
+        return BoolPrim.new(True)
+      else 
+        return BoolPrim.new(False)
+      end
     when R_LESS_EQ
-      return "(#{self.visit(node.left)} <= #{self.visit(node.right)})"
+      left = self.visit(node.left)
+      right = self.visit(node.right)
+      if right.value <= left.value
+        return BoolPrim.new(True)
+      else 
+        return BoolPrim.new(False)
+      end
     when R_GREATER
-      return "(#{self.visit(node.left)} > #{self.visit(node.right)})"
+      left = self.visit(node.left)
+      right = self.visit(node.right)
+      if right.value > left.value
+        return BoolPrim.new(True)
+      else 
+        return BoolPrim.new(False)
+      end
     when R_GREATER_EQ
-      return "(#{self.visit(node.left)} >= #{self.visit(node.right)})"
+      left = self.visit(node.left)
+      right = self.visit(node.right)
+      if right.value >= left.value
+        return BoolPrim.new(True)
+      else 
+        return BoolPrim.new(False)
+      end
     when C_FLT_TO_INT
-      return "(Int) #{self.visit(node.left)})"
+      value = self.visit(node).value
     when C_INT_TO_FLT
       return "(Float)#{self.visit(node.left)})"
     when S_MAX
