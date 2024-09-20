@@ -2,7 +2,7 @@ require_relative 'AbstractSyntaxTree'
 require_relative 'Visitor'
 
 class Evaluator include Visitor
-  def visit(node, payload=nil)
+  def visit(node, payload)
     case "#{node.class}"
     when P_INT
       return node

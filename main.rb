@@ -12,19 +12,22 @@ five = AbstractSyntaxTree::IntPrim.new(5)
 six = AbstractSyntaxTree::IntPrim.new(6)
 op1 = AbstractSyntaxTree::Add.new(one, two)
 op2 = AbstractSyntaxTree::Multiply.new(five, two)
-op3 = AbstractSyntaxTree::Divide.new(op1, op2)
+op3 = AbstractSyntaxTree::Divide.new(op1, one)
 op4 = AbstractSyntaxTree::Modulo.new(six, five)
 op5 = AbstractSyntaxTree::Negate.new(three)
+op6 = AbstractSyntaxTree::Subtract.new(one, op3)
 
 grid.setCell(AbstractSyntaxTree::CellAddr.new(17, 1), op1)
 grid.setCell(AbstractSyntaxTree::CellAddr.new(2, 6), op2)
 grid.setCell(AbstractSyntaxTree::CellAddr.new(10, 17), op3)
 grid.setCell(AbstractSyntaxTree::CellAddr.new(16, 1), op4)
 grid.setCell(AbstractSyntaxTree::CellAddr.new(9, 1), op5)
+grid.setCell(AbstractSyntaxTree::CellAddr.new(2,3), op6)
 
 puts grid.getCell(AbstractSyntaxTree::CellAddr.new(17, 1)).value
 puts grid.getCell(AbstractSyntaxTree::CellAddr.new(2, 6)).value
 puts grid.getCell(AbstractSyntaxTree::CellAddr.new(10, 17)).value
 puts grid.getCell(AbstractSyntaxTree::CellAddr.new(16, 1)).value
 puts grid.getCell(AbstractSyntaxTree::CellAddr.new(9, 1)).value
+puts grid.getCell(AbstractSyntaxTree::CellAddr.new(2,3)).value
 
