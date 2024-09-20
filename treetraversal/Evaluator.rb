@@ -20,7 +20,7 @@ class Evaluator include Visitor
       if "#{left.class}" == P_INT && "#{right.class}" == P_INT
         return AbstractSyntaxTree::IntPrim.new(left.value + right.value)
       elsif "#{left.class}" == P_FLT && "#{right.class}" == P_FLT || "#{left.class}" == P_FLT && "#{right.class}" == P_INT || "#{left.class}" == P_INT && "#{right.class}" == P_FLT
-        return AbstractSyntaxTree::FloatPrim.new(left.value + right.value)
+        return AbstractSyntaxTree::FloatPrim.new(left.value.to_f + right.value.to_f)
       else
         raise IllegalArgumentError, "Expexted: (IntPrim/FloatPrim, IntPrim/FloatPrim) \n Actual: (#{left.class}, #{right.class})"
       end
@@ -30,22 +30,35 @@ class Evaluator include Visitor
       if "#{left.class}" == P_INT && "#{right.class}" == P_INT
         return AbstractSyntaxTree::IntPrim.new(left.value - right.value)
       elsif "#{left.class}" == P_FLT && "#{right.class}" == P_FLT || "#{left.class}" == P_FLT && "#{right.class}" == P_INT || "#{left.class}" == P_INT && "#{right.class}" == P_FLT
-        return AbstractSyntaxTree::FloatPrim.new(left.value - right.value)
+        return AbstractSyntaxTree::FloatPrim.new(left.value.to_f - right.value.to_f)
       else
         raise IllegalArgumentError, "Expexted: (IntPrim/FloatPrim, IntPrim/FloatPrim) \n Actual: (#{left.class}, #{right.class})"
       end
     when A_MULT
-
       left = self.visit(node.left)
       right = self.visit(node.right)
       if "#{left.class}" == P_INT && "#{right.class}" == P_INT
         return AbstractSyntaxTree::IntPrim.new(left.value * right.value)
       elsif "#{left.class}" == P_FLT && "#{right.class}" == P_FLT || "#{left.class}" == P_FLT && "#{right.class}" == P_INT || "#{left.class}" == P_INT && "#{right.class}" == P_FLT
-        return AbstractSyntaxTree::FloatPrim.new(left.value * right.value)
+        return AbstractSyntaxTree::FloatPrim.new(left.value.to_f * right.value.to_f)
       else
         raise IllegalArgumentError, "Expexted: (IntPrim/FloatPrim, IntPrim/FloatPrim) \n Actual: (#{left.class}, #{right.class})"
       end
     when A_NEG
+      if "#{node.class}" == P_INT
+        return AbstractSyntaxTree::IntPrim.new(-node.value)
+      elsif "#{node.class}" == P_FLT
+        return AbstractSyntaxTree::FloatPrim.new(-node.value)
+      else
+        evalNode = self.visit(node.value)
+        if "#{evalNode.class}" == P_INT
+          return AbstractSyntaxTree::IntPrim.new(-evalNode.value)
+        elsif "#{evalNode.class}" == P_FLT
+          return AbstractSyntaxTree::FloatPrim.new(-evalNode.value)
+        else
+          raise IllegalArgumentError, "Expexted: (IntPrim/FloatPrim) \n Actual: (#{evalNode.class})"
+        end
+      end
     when A_DIVIDE
       left = self.visit(node.left)
       right = self.visit(node.right)
@@ -196,7 +209,6 @@ class Evaluator include Visitor
     when C_INT_TO_FLT
       return "(Float)#{self.visit(node.left)})"
     when S_MAX
-      
     when S_MIN
       return "MIN(#{self.visit(node.left)}, #{self.visit(node.right)})"
     when S_MEAN
