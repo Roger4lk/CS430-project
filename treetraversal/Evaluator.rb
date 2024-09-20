@@ -15,7 +15,6 @@ class Evaluator include Visitor
     when P_CELL_ADDR
       return node
     when A_ADD
-      
       left = self.visit(node.left)
       right = self.visit(node.right)
       if "#{left.class}" == P_INT && "#{right.class}" == P_INT
@@ -25,7 +24,7 @@ class Evaluator include Visitor
       else
         raise IllegalArgumentError, "Expexted: (IntPrim/FloatPrim, IntPrim/FloatPrim) \n Actual: (#{left.class}, #{right.class})"
       end
-    when SUB
+    when A_SUB
       left = self.visit(node.left)
       right = self.visit(node.right)
       if "#{left.class}" == P_INT && "#{right.class}" == P_INT
@@ -36,6 +35,7 @@ class Evaluator include Visitor
         raise IllegalArgumentError, "Expexted: (IntPrim/FloatPrim, IntPrim/FloatPrim) \n Actual: (#{left.class}, #{right.class})"
       end
     when A_MULT
+
       left = self.visit(node.left)
       right = self.visit(node.right)
       if "#{left.class}" == P_INT && "#{right.class}" == P_INT
@@ -45,11 +45,12 @@ class Evaluator include Visitor
       else
         raise IllegalArgumentError, "Expexted: (IntPrim/FloatPrim, IntPrim/FloatPrim) \n Actual: (#{left.class}, #{right.class})"
       end
+    when A_NEG
     when A_DIVIDE
       left = self.visit(node.left)
       right = self.visit(node.right)
       if ("#{left.class}" == P_INT || "#{left.class}" == P_FLT) && ("#{right.class}" == P_INT || "#{right.class}" == P_FLT)
-        return AbstractSyntaxTree::FloatPrim.new(left.value / right.value)
+        return AbstractSyntaxTree::FloatPrim.new(left.value.to_f / right.value.to_f)
       else
         raise IllegalArgumentError, "Expexted: (IntPrim/FloatPrim, IntPrim/FloatPrim) \n Actual: (#{left.class}, #{right.class})"
       end
@@ -82,15 +83,27 @@ class Evaluator include Visitor
       end
     when L_NOT
       value = self.visit(node.value)
-      if "#{left.class}" == P_BOOL || "#{left.class}" == P_BOOL
+      if "#{value.class}" == P_BOOL || "#{left.class}" == P_BOOL
         return AbstractSyntaxTree::BoolPrim.new(!left.value)
       else
         raise IllegalArgumentError, "Expexted: (BoolPrim) \n Actual: (#{left.class})"
       end
     when LVAL
-      raise NotImplementedError
+      collumn = self.visit(node.collumn)
+      row = self.visit(node.row)
+      if ("#{collumn.class}" == P_INT && "#{row.class}" == P_INT)
+        return AbstractSyntaxTree::CellAddr.new(row, collumn)
+      else
+        raise IllegalArgumentError, "Expected: (IntPrim, IntPrim) \nActual: (#{collumn.class}, #{row.class})" 
+      end
     when RVAL
-      raise NotImplementedError
+      collumn = self.visit(node.collumn)
+      row = self.visit(node.row)
+      if ("#{collumn.class}" == P_INT && "#{row.class}" == P_INT)
+        return payload[row][collumn]
+      else
+        raise IllegalArgumentError, "Expected: (IntPrim, IntPrim) \nActual: (#{collumn.class}, #{row.class})" 
+      end
     when B_AND
       left = self.visit(node.left)
       right = self.visit(node.right)
@@ -183,7 +196,7 @@ class Evaluator include Visitor
     when C_INT_TO_FLT
       return "(Float)#{self.visit(node.left)})"
     when S_MAX
-      return "MAX(#{self.visit(node.left)}, #{self.visit(node.right)})"
+      
     when S_MIN
       return "MIN(#{self.visit(node.left)}, #{self.visit(node.right)})"
     when S_MEAN
@@ -197,5 +210,3 @@ class Evaluator include Visitor
 
   
 end
-
-puts AbstractSyntaxTree::Add.new(AbstractSyntaxTree::IntPrim.new(2), AbstractSyntaxTree::IntPrim.new(3)).traverse(Evaluator.new()).value

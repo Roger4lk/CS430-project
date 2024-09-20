@@ -10,6 +10,7 @@ module Visitor
   A_MULT = "#{AbstractSyntaxTree::Multiply}"
   A_DIVIDE = "#{AbstractSyntaxTree::Divide}"
   A_MOD = "#{AbstractSyntaxTree::Modulo}"
+  A_NEG = "#{AbstractSyntaxTree::Negate}"
   L_AND = "#{AbstractSyntaxTree::AndLog}"
   L_OR = "#{AbstractSyntaxTree::OrLog}"
   L_NOT = "#{AbstractSyntaxTree::NotLog}"

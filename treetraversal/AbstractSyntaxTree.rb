@@ -6,7 +6,7 @@ module AbstractSyntaxTree
       @value = value
     end
 
-    def traverse(visitor)
+    def traverse(visitor, payload)
       visitor.visit(self)
     end
   end
@@ -18,7 +18,7 @@ module AbstractSyntaxTree
       @value = value
     end
 
-    def traverse(visitor)
+    def traverse(visitor, payload)
       visitor.visit(self)
     end
   end
@@ -30,7 +30,7 @@ module AbstractSyntaxTree
       @value = value
     end
 
-    def traverse(visitor)
+    def traverse(visitor, payload)
       visitor.visit(self)
     end
   end
@@ -42,19 +42,20 @@ module AbstractSyntaxTree
       @value = value
     end
 
-    def traverse(visitor)
+    def traverse(visitor, payload)
       visitor.visit(self)
     end
   end
 
   class CellAddr
-    attr_reader :addr, :right
+    attr_reader :collumn, :row
     
-    def initialize(addr) 
-      @addr = addr
+    def initialize(row, collumn) 
+      @row = row
+      @collumn = collumn
     end
 
-    def traverse(visitor)
+    def traverse(visitor, payload)
       visitor.visit(self)
     end
   end
@@ -67,7 +68,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -80,7 +81,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -93,7 +94,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -106,7 +107,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end 
@@ -119,7 +120,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -132,7 +133,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -144,7 +145,7 @@ module AbstractSyntaxTree
       @value = value
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -157,7 +158,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -170,7 +171,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -182,7 +183,7 @@ module AbstractSyntaxTree
       @value = value
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -195,7 +196,7 @@ module AbstractSyntaxTree
       @collumn = collumn
     end
 
-    def travers(visitor)
+    def travers(visitor, payload)
       visitor.visit(self)
     end
   end
@@ -208,7 +209,7 @@ module AbstractSyntaxTree
       @collumn = collumn
     end
 
-    def travers(visitor)
+    def travers(visitor, payload)
       visitor.visit(self)
     end
   end
@@ -221,7 +222,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -234,7 +235,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -247,7 +248,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -260,7 +261,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -273,7 +274,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -285,7 +286,7 @@ module AbstractSyntaxTree
       @value = value
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -298,7 +299,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -311,7 +312,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -324,7 +325,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -337,7 +338,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -350,7 +351,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -363,7 +364,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -375,7 +376,7 @@ module AbstractSyntaxTree
       @value = value
     end
 
-    def traverse(visitor)
+    def traverse(visitor, payload)
       visitor.visit(self)
     end
   end  
@@ -387,7 +388,7 @@ module AbstractSyntaxTree
       @value = value
     end
 
-    def traverse(visitor)
+    def traverse(visitor, payload)
       visitor.visit(self)
     end
   end  
@@ -400,7 +401,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -413,7 +414,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -426,7 +427,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
@@ -439,7 +440,7 @@ module AbstractSyntaxTree
       @right = right
     end
 
-    def traverse(visitor) 
+    def traverse(visitor, payload) 
       visitor.visit(self);
     end
   end
