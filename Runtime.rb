@@ -8,8 +8,12 @@ class Runtime
     @grid = grid
   end
 
-  def lookUpCell(cellAddr) 
+  def setCell(cellAddr, astNode)
+    @grid.setCell(cellAddr, astNode, self)
+  end
 
+  def lookUpCell(cellAddr) 
+    return @grid.getCell(cellAddr)
   end
 
   def lookUpCellBlock(addrOne, addrTwo)

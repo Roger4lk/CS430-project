@@ -189,11 +189,10 @@ module AbstractSyntaxTree
   end
 
   class LValue 
-    attr_reader :row, :collumn
+    attr_reader :addr
 
-    def initialize(row, collumn) 
-      @row = row
-      @collumn = collumn
+    def initialize(addr) 
+      @addr = addr
     end
 
     def travers(visitor, payload)
@@ -202,11 +201,10 @@ module AbstractSyntaxTree
   end
 
   class RValue 
-    attr_reader :row, :collumn
+    attr_reader :addr
 
-    def initialize(row, collumn) 
-      @row = row
-      @collumn = collumn
+    def initialize(addr) 
+      @addr = addr
     end
 
     def travers(visitor, payload)

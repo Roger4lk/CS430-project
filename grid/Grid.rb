@@ -11,15 +11,15 @@ class Grid
     end
   end
 
-  def setCell(cellAddr, astNode)
+  def setCell(cellAddr, astNode, payload)
     if cellAddr.row > @size
       resize(@size*2)
     end
-    @elements[cellAddr.row][cellAddr.collumn] = Cell.new(nil, astNode, astNode.traverse(Evaluator.new(), self))
+    @elements[cellAddr.row][cellAddr.collumn] = Cell.new(nil, astNode, astNode.traverse(Evaluator.new(), payload))
   end
 
   def getCell(cellAddr)
-    return @elements[cellAddr.row][cellAddr.collumn].evaluatedValue
+    return @elements[cellAddr.row][cellAddr.collumn]
   end
 
   def resize(addedRows)
