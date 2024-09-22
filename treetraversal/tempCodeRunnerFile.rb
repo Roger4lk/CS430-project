@@ -1,1 +1,3 @@
-puts 4 %3.5
+for i in 10..10
+  puts i
+end

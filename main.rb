@@ -4,6 +4,7 @@ require_relative 'treetraversal/AbstractSyntaxTree'
  
 
 grid = Grid.new()
+payload = Runtime.new(grid)
 one = AbstractSyntaxTree::IntPrim.new(1)
 two = AbstractSyntaxTree::IntPrim.new(2)
 three = AbstractSyntaxTree::IntPrim.new(3)
@@ -17,17 +18,18 @@ op4 = AbstractSyntaxTree::Modulo.new(six, five)
 op5 = AbstractSyntaxTree::Negate.new(three)
 op6 = AbstractSyntaxTree::Subtract.new(one, op3)
 
-grid.setCell(AbstractSyntaxTree::CellAddr.new(17, 1), op1)
-grid.setCell(AbstractSyntaxTree::CellAddr.new(2, 6), op2)
-grid.setCell(AbstractSyntaxTree::CellAddr.new(10, 17), op3)
-grid.setCell(AbstractSyntaxTree::CellAddr.new(16, 1), op4)
-grid.setCell(AbstractSyntaxTree::CellAddr.new(9, 1), op5)
-grid.setCell(AbstractSyntaxTree::CellAddr.new(2,3), op6)
+grid.setCell(AbstractSyntaxTree::CellAddr.new(1, 1), op1)
+grid.setCell(AbstractSyntaxTree::CellAddr.new(1, 2), op2)
+grid.setCell(AbstractSyntaxTree::CellAddr.new(1, 3), op3)
+grid.setCell(AbstractSyntaxTree::CellAddr.new(2, 1), op4)
+grid.setCell(AbstractSyntaxTree::CellAddr.new(2, 2), op5)
+grid.setCell(AbstractSyntaxTree::CellAddr.new(2, 3), op6)
 
-puts grid.getCell(AbstractSyntaxTree::CellAddr.new(17, 1)).value
-puts grid.getCell(AbstractSyntaxTree::CellAddr.new(2, 6)).value
-puts grid.getCell(AbstractSyntaxTree::CellAddr.new(10, 17)).value
-puts grid.getCell(AbstractSyntaxTree::CellAddr.new(16, 1)).value
-puts grid.getCell(AbstractSyntaxTree::CellAddr.new(9, 1)).value
-puts grid.getCell(AbstractSyntaxTree::CellAddr.new(2,3)).value
+puts grid.getCell(AbstractSyntaxTree::CellAddr.new(1, 1)).value
+puts grid.getCell(AbstractSyntaxTree::CellAddr.new(1, 2)).value
+puts grid.getCell(AbstractSyntaxTree::CellAddr.new(1, 3)).value
+puts grid.getCell(AbstractSyntaxTree::CellAddr.new(2, 1)).value
+puts grid.getCell(AbstractSyntaxTree::CellAddr.new(2, 2)).value
+puts grid.getCell(AbstractSyntaxTree::CellAddr.new(2, 3)).value
+puts "sum: #{AbstractSyntaxTree::Mean.new(AbstractSyntaxTree::CellAddr.new(1, 1), AbstractSyntaxTree::CellAddr.new(2, 3)).traverse(Evaluator.new(), payload).value}"
 

@@ -7,7 +7,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload)
-      visitor.visit(self)
+      visitor.visit(self, payload)
     end
   end
 
@@ -19,7 +19,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload)
-      visitor.visit(self)
+      visitor.visit(self, payload)
     end
   end
 
@@ -31,7 +31,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload)
-      visitor.visit(self)
+      visitor.visit(self, payload)
     end
   end
 
@@ -43,7 +43,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload)
-      visitor.visit(self)
+      visitor.visit(self, payload)
     end
   end
 
@@ -56,7 +56,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload)
-      visitor.visit(self)
+      visitor.visit(self, payload)
     end
   end
 
@@ -69,7 +69,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -82,7 +82,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
   
@@ -95,7 +95,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
   
@@ -108,7 +108,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end 
   
@@ -121,7 +121,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
   
@@ -134,7 +134,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
   
@@ -146,7 +146,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -159,7 +159,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -172,7 +172,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -184,7 +184,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -197,7 +197,7 @@ module AbstractSyntaxTree
     end
 
     def travers(visitor, payload)
-      visitor.visit(self)
+      visitor.visit(self, payload)
     end
   end
 
@@ -210,7 +210,7 @@ module AbstractSyntaxTree
     end
 
     def travers(visitor, payload)
-      visitor.visit(self)
+      visitor.visit(self, payload)
     end
   end
 
@@ -223,7 +223,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -236,7 +236,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -249,7 +249,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -262,7 +262,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -275,7 +275,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -287,7 +287,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -300,7 +300,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -313,7 +313,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -326,7 +326,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -339,7 +339,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -352,7 +352,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -365,7 +365,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -377,7 +377,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload)
-      visitor.visit(self)
+      visitor.visit(self, payload)
     end
   end  
 
@@ -389,7 +389,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload)
-      visitor.visit(self)
+      visitor.visit(self, payload)
     end
   end  
 
@@ -402,7 +402,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -415,7 +415,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -428,7 +428,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 
@@ -441,7 +441,7 @@ module AbstractSyntaxTree
     end
 
     def traverse(visitor, payload) 
-      visitor.visit(self);
+      visitor.visit(self, payload);
     end
   end
 end
