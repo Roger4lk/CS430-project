@@ -5,10 +5,7 @@ class Grid
   def initialize() 
     @size = 16 
     @elements = []
-    tmpArr = []
-    for i in 0..16
-      @elements.push([])
-    end
+    resize(16)
   end
 
   def setCell(cellAddr, astNode, payload)
