@@ -14,11 +14,13 @@ class Serializer include Visitor
     when P_STRING
       return "#{node.value}"
     when P_CELL_ADDR
-      return "#{node.value}"
+      return "#{node.row}, #{node.collumn}"
     when A_ADD
       return "(#{self.visit(node.left)} + #{self.visit(node.right)})"
-    when SUB
+    when A_SUB
       return "(#{self.visit(node.left)} - #{self.visit(node.right)})"
+    when A_NEG
+      return "-#{self.visit(node.value)}"
     when A_MULT
       return "(#{self.visit(node.left)} * #{self.visit(node.right)})"
     when A_DIVIDE
@@ -30,11 +32,11 @@ class Serializer include Visitor
     when L_OR
       return "(#{self.visit(node.left)} || #{self.visit(node.right)})"
     when L_NOT
-      return "(!#{self.visit(node.left)})"
+      return "(!#{self.visit(node.value)})"
     when LVAL
-      return "LVALUE: (#{self.visit(node.row)}, #{self.visit(node.collumn)})"
+      return "[#{self.visit(node.addr)}]"
     when RVAL
-      return "RVALUE: (#{self.visit(node.row)}, #{self.visit(node.collumn)})"
+      return "#[#{self.visit(node.addr)}]"
     when B_AND
       return "(#{self.visit(node.left)} & #{self.visit(node.right)})"
     when B_OR
@@ -58,9 +60,9 @@ class Serializer include Visitor
     when R_GREATER_EQ
       return "(#{self.visit(node.left)} >= #{self.visit(node.right)})"
     when C_FLT_TO_INT
-      return "(Int) #{self.visit(node.left)})"
+      return "(Int) #{self.visit(node.value)})"
     when C_INT_TO_FLT
-      return "(Float)#{self.visit(node.left)})"
+      return "(Float)#{self.visit(node.value)})"
     when S_MAX
       return "MAX(#{self.visit(node.left)}, #{self.visit(node.right)})"
     when S_MIN

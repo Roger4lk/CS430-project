@@ -97,11 +97,11 @@ class Evaluator include Visitor
       end
     when L_NOT
       if ("#{node.class}" == P_BOOL)
-        return AbstractSyntaxTree::BoolPrim.new(node.value)
+        return AbstractSyntaxTree::BoolPrim.new(!node.value)
       else
         value = self.visit(node.value, payload)
         if ("#{value.class}" == P_BOOL)
-          return AbstractSyntaxTree::BoolPrim.new(node.value)
+          return AbstractSyntaxTree::BoolPrim.new(!value.value)
         else
           raise ArgumentError, "Expected: (BoolPrim) \nActual: (#{value.class})" 
         end
@@ -187,7 +187,7 @@ class Evaluator include Visitor
     when R_LESS
       left = self.visit(node.left, payload)
       right = self.visit(node.right, payload)
-      if right.value < left.value
+      if left.value < right.value
         return AbstractSyntaxTree::BoolPrim.new(true)
       else 
         return AbstractSyntaxTree::BoolPrim.new(false)
@@ -195,7 +195,7 @@ class Evaluator include Visitor
     when R_LESS_EQ
       left = self.visit(node.left, payload)
       right = self.visit(node.right, payload)
-      if right.value <= left.value
+      if left.value <= right.value
         return BoolPrim.new(true)
       else 
         return BoolPrim.new(false)
@@ -203,25 +203,45 @@ class Evaluator include Visitor
     when R_GREATER
       left = self.visit(node.left, payload)
       right = self.visit(node.right, payload)
-      if right.value > left.value
-        return BoolPrim.new(true)
+      if ("#{left.class}" == P_FLT || "#{left.class}" == P_INT) && ("#{right.class}" == P_FLT || "#{right.class}" == P_INT)
+        return AbstractSyntaxTree::BoolPrim.new(left.value > right.value)
       else 
-        return BoolPrim.new(false)
+        raise ArgumentError, "Expected: (FLoatPrim/IntPrim, FLoatPrim/IntPrim) \nActual: (#{left.class}, #{right.class})"
       end
     when R_GREATER_EQ
       left = self.visit(node.left, payload)
       right = self.visit(node.right, payload)
-      if right.value >= left.value
+      if left.value >= right.value
         return BoolPrim.new(true)
       else 
         return BoolPrim.new(false)
       end
     when C_FLT_TO_INT
-      value = self.visit(node, payload).value
+      if "#{node.value.class}" == P_FLT
+        return AbstractSyntaxTree::IntPrim.new(node.value.value.to_i)
+      else 
+        evalValNode = self.visit(Evaluator.new(), payload)
+        if "#{node.value.class}" == P_FLT
+          return AbstractSyntaxTree::IntPrim.new(evalValNode.value.to_i)
+        else
+          raise ArgumentError, "Expected: (FLoatPrim) \nActual: (#{evalValNode.class})"
+        end
+      end
     when C_INT_TO_FLT
+      if "#{node.value.class}" == P_INT
+        return AbstractSyntaxTree::IntPrim.new(node.value.value.to_f)
+      else 
+        evalValNode = self.visit(Evaluator.new(), payload)
+        if "#{node.value.class}" == P_INT
+          return AbstractSyntaxTree::IntPrim.new(evalValNode.value.to_f)
+        else
+          raise ArgumentError, "Expected: (IntPrim) \nActual: (#{evalValNode.class})"
+        end
+      end
     when S_MAX
-      addrOne = node.left.traverse(self, payload)
-      addrTwo = node.right.traverse(self, payload)
+      addrOne = node.left.addr.traverse(self, payload)
+      addrTwo = node.right.addr.traverse(self, payload)
+      puts addrOne.row
       if "#{addrOne.class}" != P_CELL_ADDR || "#{addrTwo.class}" != P_CELL_ADDR
         raise ArgumentError, "Expected: (CellAddr, CellAddr) \nActual: (#{addrOne.class}, #{addrTwo.class})"
       end
@@ -230,8 +250,8 @@ class Evaluator include Visitor
       end
       return AbstractSyntaxTree::FloatPrim.new(max)
     when S_MIN
-      addrOne = node.left.traverse(self, payload)
-      addrTwo = node.right.traverse(self, payload)
+      addrOne = node.left.addr.traverse(self, payload)
+      addrTwo = node.right.addr.traverse(self, payload)
       if "#{addrOne.class}" != P_CELL_ADDR || "#{addrTwo.class}" != P_CELL_ADDR
         raise ArgumentError, "Expected: (CellAddr, CellAddr) \nActual: (#{addrOne.class}, #{addrTwo.class})"
       end
@@ -240,8 +260,8 @@ class Evaluator include Visitor
       end
       return AbstractSyntaxTree::FloatPrim.new(min)
     when S_MEAN
-      addrOne = node.left.traverse(self, payload)
-      addrTwo = node.right.traverse(self, payload)
+      addrOne = node.left.addr.traverse(self, payload)
+      addrTwo = node.right.addr.traverse(self, payload)
       if "#{addrOne.class}" != P_CELL_ADDR || "#{addrTwo.class}" != P_CELL_ADDR
         raise ArgumentError, "Expected: (CellAddr, CellAddr) \nActual: (#{addrOne.class}, #{addrTwo.class})"
       end
@@ -258,8 +278,8 @@ class Evaluator include Visitor
       end
       return AbstractSyntaxTree::FloatPrim.new(sum/ numElements)
     when S_SUM
-      addrOne = node.left.traverse(self, payload)
-      addrTwo = node.right.traverse(self, payload)
+      addrOne = node.left.addr.traverse(self, payload)
+      addrTwo = node.right.addr.traverse(self, payload)
       if "#{addrOne.class}" != P_CELL_ADDR || "#{addrTwo.class}" != P_CELL_ADDR
         raise ArgumentError, "Expected: (CellAddr, CellAddr) \nActual: (#{addrOne.class}, #{addrTwo.class})"
       end
@@ -272,9 +292,7 @@ class Evaluator include Visitor
       end
       return AbstractSyntaxTree::FloatPrim.new(sum)
     else
-      
+      raise ArgumentError, "illegal arg type: (#{node.class})"
     end
   end
-
-  
 end

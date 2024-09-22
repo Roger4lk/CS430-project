@@ -33,11 +33,17 @@ class Runtime
       rightCol = addrOne.collumn
     end
     acc = 0.0
+    puts "#{bigRowNum} #{smallRowNum} #{leftCol} #{rightCol}"
+
     for row in smallRowNum..bigRowNum
       for collumn in leftCol..rightCol
-        cellVal = grid.getCell(AbstractSyntaxTree::CellAddr.new(row, collumn))
-        if ("#{cellVal.class}" == Visitor::P_INT || "#{cellVal.class}" == Visitor::P_FLT)
-          acc = yield(acc, cellVal.value)
+        currCell = grid.getCell(AbstractSyntaxTree::CellAddr.new(row, collumn))
+        currNode = currCell.astNode.traverse(Evaluator.new(), self)
+        if ("#{currNode.class}" != Visitor::P_INT && "#{currNode.class}" != Visitor::P_FLT) || acc.nil? || currNode.nil?
+          puts "#{curr.class} #{curr.class}"
+          raise ArgumentError, "some cells are of illegal type or nil"
+        else
+          acc = yield(acc, currNode.value)
         end
       end
     end

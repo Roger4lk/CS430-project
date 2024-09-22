@@ -179,7 +179,7 @@ module AbstractSyntaxTree
   class NotLog
     attr_reader :value
 
-    def initialize(left)
+    def initialize(value)
       @value = value
     end
 
