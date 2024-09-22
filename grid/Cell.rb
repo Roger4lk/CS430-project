@@ -3,11 +3,15 @@ require_relative '../treetraversal/Evaluator'
 
 class Cell 
   attr_reader :evaluatedValue, :astNode
-
-  def initialize(sourceCode, astNode, evaluatedValue)
+  
+  ###
+  # @description: 
+  # @param {any}: 
+  # @return {any}: 
+  ###
+  def initialize(sourceCode, astNode,q[]'' evaluatedValue)
     @sourceCode = sourceCode
     @astNode = astNode
     @evaluatedValue = evaluatedValue
   end
-
 end
