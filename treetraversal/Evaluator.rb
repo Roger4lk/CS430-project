@@ -241,7 +241,6 @@ class Evaluator include Visitor
     when S_MAX
       addrOne = node.left.addr.traverse(self, payload)
       addrTwo = node.right.addr.traverse(self, payload)
-      puts addrOne.row
       if "#{addrOne.class}" != P_CELL_ADDR || "#{addrTwo.class}" != P_CELL_ADDR
         raise ArgumentError, "Expected: (CellAddr, CellAddr) \nActual: (#{addrOne.class}, #{addrTwo.class})"
       end

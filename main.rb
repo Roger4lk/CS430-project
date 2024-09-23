@@ -17,7 +17,7 @@ twelve = AbstractSyntaxTree::IntPrim.new(12)
 op1 = AbstractSyntaxTree::Modulo.new(AbstractSyntaxTree::Add.new(AbstractSyntaxTree::Multiply.new(seven, four), three), twelve)
 op2 = AbstractSyntaxTree::Multiply.new(AbstractSyntaxTree::RValue.new(AbstractSyntaxTree::CellAddr.new(3, 1)), AbstractSyntaxTree::Negate.new(AbstractSyntaxTree::RValue.new(AbstractSyntaxTree::CellAddr.new(2, 1))))
 op3 = AbstractSyntaxTree::LshiftBitw.new(AbstractSyntaxTree::RValue.new(AbstractSyntaxTree::CellAddr.new(AbstractSyntaxTree::Add.new(one, one).traverse(Evaluator.new(), payload).value, 4)), three)
-op4 = AbstractSyntaxTree::LessThan.new(AbstractSyntaxTree::RValue.new(AbstractSyntaxTree::CellAddr.new(0, 0)), AbstractSyntaxTree::RValue.new( AbstractSyntaxTree::CellAddr.new(0, 0)))
+op4 = AbstractSyntaxTree::LessThan.new(AbstractSyntaxTree::RValue.new(AbstractSyntaxTree::CellAddr.new(0, 0)), AbstractSyntaxTree::RValue.new( AbstractSyntaxTree::CellAddr.new(0, 1)))
 op5 = AbstractSyntaxTree::NotLog.new(AbstractSyntaxTree::GreaterThan.new(AbstractSyntaxTree::FloatPrim.new(3.3), AbstractSyntaxTree::FloatPrim.new(3.2)))
 op10 = AbstractSyntaxTree::Divide.new(AbstractSyntaxTree::IntToFloat.new(seven), two)
 

@@ -62,7 +62,7 @@ class Serializer include Visitor
     when C_FLT_TO_INT
       return "(Int) #{self.visit(node.value)})"
     when C_INT_TO_FLT
-      return "(Float)#{self.visit(node.value)})"
+      return "(Float) #{self.visit(node.value)})"
     when S_MAX
       return "MAX(#{self.visit(node.left)}, #{self.visit(node.right)})"
     when S_MIN
